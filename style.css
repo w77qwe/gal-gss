@@ -544,14 +544,12 @@ body {
 .umg-logo {
     width: 180px;
     height: auto;
-    color: var(--text-secondary);
-    opacity: 0.7;
+    opacity: 0.45;
     transition: var(--transition);
 }
 
 .umg-logo:hover {
-    opacity: 1;
-    color: var(--text-primary);
+    opacity: 0.75;
 }
 
 .footer-legal {
