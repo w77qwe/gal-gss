@@ -54,7 +54,6 @@ body {
     min-height: 100vh;
     overflow-x: hidden;
 
-    /* Мягкий бело-голубой фон */
     background:
         linear-gradient(135deg,
             #ffffff   0%,
@@ -171,7 +170,6 @@ body {
     overflow: hidden;
 }
 
-/* Декоративный блик сверху */
 .hero::before {
     content: '';
     position: absolute;
@@ -305,7 +303,6 @@ body {
     opacity: 1;
 }
 
-/* Активный трек */
 .track-card.playing {
     background: rgba(219, 234, 254, 0.5);
     border-color: rgba(96, 165, 250, 0.5);
@@ -349,16 +346,38 @@ body {
     transition: var(--transition);
 }
 
-.track-card:hover .track-name {
-    color: var(--blue-600);
-}
-
+.track-card:hover .track-name,
 .track-card.playing .track-name {
     color: var(--blue-600);
 }
 
+/* ---------- Track Meta (Artist · Label) ---------- */
+.track-meta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 2px;
+}
+
+.track-artist {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--blue-500);
+    transition: var(--transition);
+}
+
+.track-card:hover .track-artist {
+    color: var(--blue-600);
+}
+
+.track-divider {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    opacity: 0.5;
+}
+
 .track-label {
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     font-weight: 500;
     color: var(--text-muted);
     letter-spacing: 0.02em;
@@ -424,7 +443,6 @@ body {
     color: var(--text-muted);
     min-width: 36px;
     text-align: right;
-    tabular-nums: true;
     font-variant-numeric: tabular-nums;
 }
 
@@ -476,7 +494,6 @@ body {
     transition: var(--transition);
 }
 
-/* По умолчанию — play видно, pause скрыт */
 .btn-play .icon-play {
     opacity: 1;
     transform: scale(1);
@@ -487,7 +504,6 @@ body {
     transform: scale(0.5);
 }
 
-/* Когда карточка playing — переключаем иконки */
 .track-card.playing .btn-play .icon-play {
     opacity: 0;
     transform: scale(0.5);
@@ -498,7 +514,6 @@ body {
     transform: scale(1);
 }
 
-/* Пульсация у активного play */
 .track-card.playing .btn-play {
     animation: playPulse 2s ease-in-out infinite;
 }
@@ -513,11 +528,50 @@ body {
    ========================================== */
 .footer {
     text-align: center;
-    padding: 20px 28px;
-    border-radius: var(--radius-md);
-    font-size: 0.85rem;
+    padding: 32px 28px 28px;
+    border-radius: var(--radius-lg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.footer-umg {
+    display: flex;
+    justify-content: center;
+}
+
+.umg-logo {
+    width: 180px;
+    height: auto;
+    color: var(--text-secondary);
+    opacity: 0.7;
+    transition: var(--transition);
+}
+
+.umg-logo:hover {
+    opacity: 1;
+    color: var(--text-primary);
+}
+
+.footer-legal {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.footer-copyright {
+    font-size: 0.78rem;
     font-weight: 500;
     color: var(--text-secondary);
+    letter-spacing: 0.01em;
+    line-height: 1.5;
+}
+
+.footer-love {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text-muted);
 }
 
 /* ==========================================
@@ -552,11 +606,11 @@ body {
     animation: fadeUp 0.6s ease forwards;
 }
 
-.hero          { animation-delay: 0.1s; }
+.hero          { animation-delay: 0.1s;  }
 .section-title { animation-delay: 0.25s; }
-.footer        { animation-delay: 0.9s; }
+.footer        { animation-delay: 0.9s;  }
 
-.track-card:nth-child(1) { animation-delay: 0.3s;  }
+.track-card:nth-child(1) { animation-delay: 0.30s; }
 .track-card:nth-child(2) { animation-delay: 0.38s; }
 .track-card:nth-child(3) { animation-delay: 0.46s; }
 .track-card:nth-child(4) { animation-delay: 0.54s; }
@@ -611,6 +665,19 @@ body {
 
     .progress-bar {
         flex: 1;
+    }
+
+    .track-meta {
+        flex-wrap: wrap;
+        gap: 4px;
+    }
+
+    .umg-logo {
+        width: 150px;
+    }
+
+    .footer-copyright {
+        font-size: 0.72rem;
     }
 
     .bubble-1 { width: 280px; height: 280px; }
