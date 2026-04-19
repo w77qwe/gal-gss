@@ -80,6 +80,9 @@ body {
     filter: blur(80px);
     opacity: 0.5;
     will-change: transform;
+    /* Форсируем обработку на видеокарте, чтобы анимация не ебала процессор */
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
 .bubble-1 {
@@ -279,6 +282,9 @@ body {
     cursor: default;
     position: relative;
     overflow: hidden;
+    /* Чтобы текст случайно не выделялся при судорожных кликах */
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 .track-card::before {
@@ -401,6 +407,8 @@ body {
     cursor: pointer;
     position: relative;
     transition: height var(--transition);
+    /* Убиваем уродскую вспышку при клике с телефона */
+    -webkit-tap-highlight-color: transparent;
 }
 
 .progress-bar:hover {

@@ -112,14 +112,19 @@
 
         state.audio.play()
             .then(() => {
-                state.isPlaying = true;
-                card.classList.add('playing');
-                startProgressLoop();
+                // Убеждаемся, что пока трек грузился, юзер не успел переключить на другой
+                if (state.currentCard === card) {
+                    state.isPlaying = true;
+                    card.classList.add('playing');
+                    startProgressLoop();
+                }
             })
             .catch((err) => {
-                console.warn('Playback error:', err);
+                // Ошибка AbortError — это норма при быстром переключении треков, игнорим её
+                if (err.name !== 'AbortError') {
+                    console.error('Какая-то хуйня с воспроизведением:', err);
+                }
             });
-    }
 
     function pauseTrack() {
         state.audio.pause();
@@ -140,7 +145,9 @@
                 startProgressLoop();
             })
             .catch((err) => {
-                console.warn('Resume error:', err);
+                if (err.name !== 'AbortError') {
+                    console.error('Ошибка при снятии с паузы:', err);
+                }
             });
     }
 
@@ -287,6 +294,12 @@
 
     // Когда трек закончился — следующий
     state.audio.addEventListener('ended', playNext);
+
+    // Если файл не найден (404) или битый — не зависаем, а скипаем нахуй
+    state.audio.addEventListener('error', () => {
+        console.warn('Бля, файл трека проебался или не грузится. Врубаем следующий.');
+        playNext();
+    });
 
     // Обновляем время при загрузке метаданных
     state.audio.addEventListener('loadedmetadata', () => {
