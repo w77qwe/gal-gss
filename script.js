@@ -160,7 +160,6 @@
         stopProgressLoop();
 
         if (nextIdx < cards.length) {
-            // Играем следующий
             state.currentCard = null;
             state.isPlaying = false;
             playTrack(cards[nextIdx]);
@@ -168,6 +167,36 @@
             // Список закончился — полный сброс
             state.currentCard = null;
             state.isPlaying = false;
+        }
+    }
+
+    // ==========================================
+    //  ПРЕДЫДУЩИЙ ТРЕК / ПЕРЕМОТКА В НАЧАЛО
+    // ==========================================
+
+    function playPrev() {
+        if (!state.currentCard) return;
+
+        // Если прошло больше 3 сек — перемотка в начало
+        if (state.audio.currentTime > 3) {
+            state.audio.currentTime = 0;
+            return;
+        }
+
+        const cards = Array.from(trackCards);
+        const idx = cards.indexOf(state.currentCard);
+        const prevIdx = idx - 1;
+
+        resetCard(state.currentCard);
+        stopProgressLoop();
+
+        if (prevIdx >= 0) {
+            state.currentCard = null;
+            state.isPlaying = false;
+            playTrack(cards[prevIdx]);
+        } else {
+            // Первый трек — просто перемотка
+            state.audio.currentTime = 0;
         }
     }
 
@@ -240,13 +269,14 @@
             seekTo(card, e);
         });
 
-        // Drag по progress bar
+        // Drag по progress bar (мышь)
         progressBar.addEventListener('mousedown', (e) => {
             e.stopPropagation();
             seekTo(card, e);
             initDrag(card, e);
         });
 
+        // Drag по progress bar (тач)
         progressBar.addEventListener('touchstart', (e) => {
             e.stopPropagation();
             const touch = e.touches[0];
@@ -267,13 +297,14 @@
     });
 
     // ==========================================
-    //  КЛАВИАТУРА: пробел = пауза/возобновление
+    //  КЛАВИАТУРА
     // ==========================================
 
     document.addEventListener('keydown', (e) => {
         // Не перехватываем, если фокус в input/textarea
         if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
 
+        // Space — пауза / возобновление
         if (e.code === 'Space') {
             e.preventDefault();
             if (!state.currentCard) return;
@@ -285,38 +316,41 @@
             }
         }
 
-        // Стрелка вправо → следующий трек
+        // Shift + → — следующий трек
         if (e.code === 'ArrowRight' && e.shiftKey) {
             e.preventDefault();
             playNext();
         }
+
+        // Shift + ← — предыдущий трек / перемотка в начало
+        if (e.code === 'ArrowLeft' && e.shiftKey) {
+            e.preventDefault();
+            playPrev();
+        }
     });
 
     // ==========================================
-    //  MEDIA SESSION API (для уведомлений ОС)
+    //  MEDIA SESSION API (уведомления ОС)
     // ==========================================
 
     if ('mediaSession' in navigator) {
         state.audio.addEventListener('play', () => {
             if (!state.currentCard) return;
-            const name = state.currentCard.querySelector('.track-name').textContent;
+
+            const name   = state.currentCard.querySelector('.track-name').textContent;
+            const artist = state.currentCard.querySelector('.track-artist').textContent;
 
             navigator.mediaSession.metadata = new MediaMetadata({
-                title: name,
-                artist: 'Autistic Games',
-                album: 'GSS Original Soundtracks',
+                title:  name,
+                artist: artist,
+                album:  'GSS Original Soundtracks',
             });
         });
 
-        navigator.mediaSession.setActionHandler('play', resumeTrack);
-        navigator.mediaSession.setActionHandler('pause', pauseTrack);
-        navigator.mediaSession.setActionHandler('nexttrack', playNext);
-        navigator.mediaSession.setActionHandler('previoustrack', () => {
-            // Перемотка в начало текущего трека
-            if (state.audio.currentTime > 3) {
-                state.audio.currentTime = 0;
-            }
-        });
+        navigator.mediaSession.setActionHandler('play',          resumeTrack);
+        navigator.mediaSession.setActionHandler('pause',         pauseTrack);
+        navigator.mediaSession.setActionHandler('nexttrack',     playNext);
+        navigator.mediaSession.setActionHandler('previoustrack', playPrev);
     }
 
 })();
