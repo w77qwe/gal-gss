@@ -1,0 +1,650 @@
+/* ============================================
+   AUTISTIC GAMES — LIQUID GLASS THEME
+   ============================================ */
+
+/* ---------- CSS Variables ---------- */
+:root {
+    --blue-50:  #eff6ff;
+    --blue-100: #dbeafe;
+    --blue-200: #bfdbfe;
+    --blue-300: #93c5fd;
+    --blue-400: #60a5fa;
+    --blue-500: #3b82f6;
+    --blue-600: #2563eb;
+
+    --glass-bg:        rgba(255, 255, 255, 0.45);
+    --glass-bg-hover:  rgba(255, 255, 255, 0.6);
+    --glass-border:    rgba(255, 255, 255, 0.7);
+    --glass-shadow:    rgba(59, 130, 246, 0.08);
+    --glass-blur:      20px;
+
+    --text-primary:   #0f172a;
+    --text-secondary: #475569;
+    --text-muted:     #94a3b8;
+
+    --radius-sm:  12px;
+    --radius-md:  20px;
+    --radius-lg:  28px;
+    --radius-xl:  36px;
+
+    --font-main:  'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-title: 'Space Grotesk', 'Inter', sans-serif;
+
+    --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ---------- Reset & Base ---------- */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: var(--font-main);
+    color: var(--text-primary);
+    min-height: 100vh;
+    overflow-x: hidden;
+
+    /* Мягкий бело-голубой фон */
+    background:
+        linear-gradient(135deg,
+            #ffffff   0%,
+            #f0f7ff  25%,
+            #e0efff  50%,
+            #f0f7ff  75%,
+            #ffffff  100%
+        );
+    background-attachment: fixed;
+}
+
+/* ---------- Фоновые пузыри ---------- */
+.bg-bubbles {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.bubble {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.5;
+    will-change: transform;
+}
+
+.bubble-1 {
+    width:  500px;
+    height: 500px;
+    background: radial-gradient(circle, var(--blue-200), transparent 70%);
+    top: -10%;
+    left: -5%;
+    animation: floatBubble 18s ease-in-out infinite alternate;
+}
+
+.bubble-2 {
+    width:  400px;
+    height: 400px;
+    background: radial-gradient(circle, #c4b5fd, transparent 70%);
+    top: 30%;
+    right: -8%;
+    animation: floatBubble 22s ease-in-out infinite alternate-reverse;
+}
+
+.bubble-3 {
+    width:  350px;
+    height: 350px;
+    background: radial-gradient(circle, var(--blue-100), transparent 70%);
+    bottom: 5%;
+    left: 20%;
+    animation: floatBubble 20s ease-in-out infinite alternate;
+}
+
+.bubble-4 {
+    width:  250px;
+    height: 250px;
+    background: radial-gradient(circle, #a5f3fc, transparent 70%);
+    top: 55%;
+    left: 60%;
+    animation: floatBubble 16s ease-in-out infinite alternate-reverse;
+}
+
+.bubble-5 {
+    width:  300px;
+    height: 300px;
+    background: radial-gradient(circle, var(--blue-200), transparent 70%);
+    top: 10%;
+    left: 50%;
+    animation: floatBubble 24s ease-in-out infinite alternate;
+}
+
+@keyframes floatBubble {
+    0%   { transform: translate(0, 0)       scale(1);    }
+    33%  { transform: translate(40px, -30px) scale(1.05); }
+    66%  { transform: translate(-20px, 20px) scale(0.95); }
+    100% { transform: translate(30px, -40px) scale(1.02); }
+}
+
+/* ---------- Стеклянная карточка (base) ---------- */
+.glass-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--glass-blur)) saturate(1.6);
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(1.6);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-lg);
+    box-shadow:
+        0  4px  30px var(--glass-shadow),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    transition: var(--transition);
+}
+
+/* ---------- Контейнер ---------- */
+.container {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 40px 20px 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+/* ==========================================
+   HERO
+   ========================================== */
+.hero {
+    text-align: center;
+    padding: 56px 32px 40px;
+    border-radius: var(--radius-xl);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Декоративный блик сверху */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: -40%;
+    left: 10%;
+    width: 80%;
+    height: 60%;
+    background: radial-gradient(ellipse, rgba(147, 197, 253, 0.35), transparent 70%);
+    pointer-events: none;
+}
+
+.hero-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    position: relative;
+    z-index: 1;
+}
+
+.logo-icon {
+    width: 72px;
+    height: 72px;
+    animation: logoPulse 4s ease-in-out infinite;
+}
+
+.logo-icon svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 2px 8px rgba(96, 165, 250, 0.4));
+}
+
+@keyframes logoPulse {
+    0%, 100% { transform: scale(1);    filter: brightness(1);   }
+    50%      { transform: scale(1.06); filter: brightness(1.1); }
+}
+
+.hero-title {
+    font-family: var(--font-title);
+    font-weight: 800;
+    font-size: clamp(2rem, 7vw, 3.2rem);
+    letter-spacing: -0.03em;
+    background: linear-gradient(135deg, var(--blue-600), var(--blue-400), #a78bfa);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradientShift 6s ease-in-out infinite;
+}
+
+@keyframes gradientShift {
+    0%, 100% { background-position: 0%   50%; }
+    50%      { background-position: 100% 50%; }
+}
+
+.hero-copyright {
+    margin-top: 12px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+    position: relative;
+    z-index: 1;
+}
+
+/* ==========================================
+   SECTION TITLE
+   ========================================== */
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 20px 28px;
+    font-family: var(--font-title);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+}
+
+.title-icon {
+    font-size: 1.35rem;
+    animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0);   }
+    50%      { transform: translateY(-4px); }
+}
+
+/* ==========================================
+   TRACK LIST
+   ========================================== */
+.track-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+/* ---------- Карточка трека ---------- */
+.track-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 22px;
+    border-radius: var(--radius-md);
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+}
+
+.track-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(96, 165, 250, 0.06), transparent 60%);
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.track-card:hover {
+    background: var(--glass-bg-hover);
+    border-color: rgba(147, 197, 253, 0.5);
+    box-shadow:
+        0  8px 40px rgba(59, 130, 246, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.7);
+    transform: translateY(-2px);
+}
+
+.track-card:hover::before {
+    opacity: 1;
+}
+
+/* Активный трек */
+.track-card.playing {
+    background: rgba(219, 234, 254, 0.5);
+    border-color: rgba(96, 165, 250, 0.5);
+    box-shadow:
+        0  8px 40px rgba(59, 130, 246, 0.15),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+/* ---------- Номер трека ---------- */
+.track-index {
+    font-family: var(--font-title);
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    min-width: 28px;
+    text-align: center;
+    opacity: 0.6;
+    transition: var(--transition);
+}
+
+.track-card:hover .track-index,
+.track-card.playing .track-index {
+    color: var(--blue-500);
+    opacity: 1;
+}
+
+/* ---------- Инфо трека ---------- */
+.track-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.track-name {
+    font-family: var(--font-title);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transition: var(--transition);
+}
+
+.track-card:hover .track-name {
+    color: var(--blue-600);
+}
+
+.track-card.playing .track-name {
+    color: var(--blue-600);
+}
+
+.track-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    letter-spacing: 0.02em;
+}
+
+/* ---------- Контролы ---------- */
+.track-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+/* ---------- Progress bar ---------- */
+.progress-bar {
+    width: 100px;
+    height: 4px;
+    background: rgba(148, 163, 184, 0.2);
+    border-radius: 100px;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+    transition: height var(--transition);
+}
+
+.progress-bar:hover {
+    height: 6px;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--blue-400), var(--blue-500));
+    border-radius: 100px;
+    transition: width 0.1s linear;
+    position: relative;
+}
+
+.progress-fill::after {
+    content: '';
+    position: absolute;
+    right: -4px;
+    top: 50%;
+    transform: translateY(-50%) scale(0);
+    width: 10px;
+    height: 10px;
+    background: var(--blue-500);
+    border-radius: 50%;
+    box-shadow: 0 0 6px rgba(59, 130, 246, 0.5);
+    transition: transform var(--transition);
+}
+
+.track-card.playing .progress-fill::after,
+.progress-bar:hover .progress-fill::after {
+    transform: translateY(-50%) scale(1);
+}
+
+/* ---------- Время трека ---------- */
+.track-time {
+    font-family: var(--font-title);
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    min-width: 36px;
+    text-align: right;
+    tabular-nums: true;
+    font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Кнопка Play ---------- */
+.btn-play {
+    width: 44px;
+    height: 44px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: linear-gradient(135deg, var(--blue-400), var(--blue-500));
+    color: #fff;
+    box-shadow:
+        0 4px 15px rgba(59, 130, 246, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-play::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(255,255,255,0.25), transparent 60%);
+    pointer-events: none;
+}
+
+.btn-play:hover {
+    transform: scale(1.1);
+    box-shadow:
+        0 6px 24px rgba(59, 130, 246, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.btn-play:active {
+    transform: scale(0.95);
+}
+
+.btn-play svg {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    transition: var(--transition);
+}
+
+/* По умолчанию — play видно, pause скрыт */
+.btn-play .icon-play {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.btn-play .icon-pause {
+    opacity: 0;
+    transform: scale(0.5);
+}
+
+/* Когда карточка playing — переключаем иконки */
+.track-card.playing .btn-play .icon-play {
+    opacity: 0;
+    transform: scale(0.5);
+}
+
+.track-card.playing .btn-play .icon-pause {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Пульсация у активного play */
+.track-card.playing .btn-play {
+    animation: playPulse 2s ease-in-out infinite;
+}
+
+@keyframes playPulse {
+    0%, 100% { box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3); }
+    50%      { box-shadow: 0 4px 30px rgba(59, 130, 246, 0.5); }
+}
+
+/* ==========================================
+   FOOTER
+   ========================================== */
+.footer {
+    text-align: center;
+    padding: 20px 28px;
+    border-radius: var(--radius-md);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+/* ==========================================
+   SCROLL BAR
+   ========================================== */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(148, 163, 184, 0.3);
+    border-radius: 100px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(148, 163, 184, 0.5);
+}
+
+/* ==========================================
+   ANIMATIONS — Появление карточек
+   ========================================== */
+.hero,
+.section-title,
+.track-card,
+.footer {
+    opacity: 0;
+    transform: translateY(24px);
+    animation: fadeUp 0.6s ease forwards;
+}
+
+.hero          { animation-delay: 0.1s; }
+.section-title { animation-delay: 0.25s; }
+.footer        { animation-delay: 0.9s; }
+
+.track-card:nth-child(1) { animation-delay: 0.3s;  }
+.track-card:nth-child(2) { animation-delay: 0.38s; }
+.track-card:nth-child(3) { animation-delay: 0.46s; }
+.track-card:nth-child(4) { animation-delay: 0.54s; }
+.track-card:nth-child(5) { animation-delay: 0.62s; }
+.track-card:nth-child(6) { animation-delay: 0.70s; }
+.track-card:nth-child(7) { animation-delay: 0.78s; }
+
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==========================================
+   RESPONSIVE
+   ========================================== */
+@media (max-width: 600px) {
+    .container {
+        padding: 24px 14px 48px;
+        gap: 24px;
+    }
+
+    .hero {
+        padding: 40px 20px 32px;
+    }
+
+    .logo-icon {
+        width: 56px;
+        height: 56px;
+    }
+
+    .track-card {
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 16px 16px;
+    }
+
+    .track-index {
+        display: none;
+    }
+
+    .track-info {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .track-controls {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .progress-bar {
+        flex: 1;
+    }
+
+    .bubble-1 { width: 280px; height: 280px; }
+    .bubble-2 { width: 220px; height: 220px; }
+    .bubble-3 { width: 200px; height: 200px; }
+    .bubble-4 { width: 150px; height: 150px; }
+    .bubble-5 { width: 180px; height: 180px; }
+}
+
+@media (max-width: 380px) {
+    .hero-title {
+        font-size: 1.7rem;
+    }
+
+    .section-title {
+        font-size: 1rem;
+        padding: 16px 20px;
+    }
+
+    .track-name {
+        font-size: 0.9rem;
+    }
+
+    .btn-play {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

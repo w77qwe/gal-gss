@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autistic Games — GSS Original Soundtracks</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Стили -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ========== Фоновые декоративные пузыри ========== -->
+    <div class="bg-bubbles" aria-hidden="true">
+        <div class="bubble bubble-1"></div>
+        <div class="bubble bubble-2"></div>
+        <div class="bubble bubble-3"></div>
+        <div class="bubble bubble-4"></div>
+        <div class="bubble bubble-5"></div>
+    </div>
+
+    <!-- ========== Основной контейнер ========== -->
+    <main class="container">
+
+        <!-- ===== Hero-секция ===== -->
+        <header class="hero glass-card">
+            <div class="hero-logo">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="4" y="4" width="56" height="56" rx="16" stroke="url(#logoGrad)" stroke-width="3"/>
+                        <path d="M20 36 L28 20 L36 36 L32 36 L28 28 L24 36Z" fill="url(#logoGrad)"/>
+                        <path d="M34 36 L34 22 L46 36 L42 36 L38 30 L38 36Z" fill="url(#logoGrad)" opacity="0.7"/>
+                        <defs>
+                            <linearGradient id="logoGrad" x1="0" y1="0" x2="64" y2="64">
+                                <stop offset="0%" stop-color="#60a5fa"/>
+                                <stop offset="100%" stop-color="#a78bfa"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+                <h1 class="hero-title">Autistic Games</h1>
+            </div>
+            <p class="hero-copyright">&copy; 2026 Autistic Games. All Rights Reserved.</p>
+        </header>
+
+        <!-- ===== Секция с треками ===== -->
+        <section class="soundtracks">
+            <h2 class="section-title glass-card">
+                <span class="title-icon">🎵</span>
+                GSS Original Soundtracks
+            </h2>
+
+            <div class="track-list">
+
+                <!-- Трек 1 -->
+                <div class="track-card glass-card" data-src="audio/starly.mp3">
+                    <div class="track-index">01</div>
+                    <div class="track-info">
+                        <h3 class="track-name">Starly</h3>
+                        <span class="track-label">Game Theme</span>
+                    </div>
+                    <div class="track-controls">
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                        <span class="track-time">0:00</span>
+                        <button class="btn-play" aria-label="Play Starly">
+                            <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                            <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Трек 2 -->
+                <div class="track-card glass-card" data-src="audio/poppin.mp3">
+                    <div class="track-index">02</div>
+                    <div class="track-info">
+                        <h3 class="track-name">Poppin</h3>
+                        <span class="track-label">Soundtrack</span>
+                    </div>
+                    <div class="track-controls">
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                        <span class="track-time">0:00</span>
+                        <button class="btn-play" aria-label="Play Poppin">
+                            <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                            <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Трек 3 -->
+                <div class="track-card glass-card" data-src="audio/crystals.mp3">
+                    <div class="track-index">03</div>
+                    <div class="track-info">
+                        <h3 class="track-name">Crystals</h3>
+                        <span class="track-label">Soundtrack</span>
+                    </div>
+                    <div class="track-controls">
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                        <span class="track-time">0:00</span>
+                        <button class="btn-play" aria-label="Play Crystals">
+                            <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                            <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Трек 4 -->
+                <div class="track-card glass-card" data-src="audio/to-moon-and-back.mp3">
+                    <div class="track-index">04</div>
+                    <div class="track-info">
+                        <h3 class="track-name">To Moon and Back</h3>
+                        <span class="track-label">Soundtrack</span>
+                    </div>
+                    <div class="track-controls">
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                        <span class="track-time">0:00</span>
+                        <button class="btn-play" aria-label="Play To Moon and Back">
+                            <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                            <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Трек 5 -->
+                <div class="track-card glass-card" data-src="audio/goddess.mp3">
+                    <div class="track-index">05</div>
+                    <div class="track-info">
+                        <h3 class="track-name">Goddess</h3>
+                        <span class="track-label">Soundtrack</span>
+                    </div>
+                    <div class="track-controls">
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                        <span class="track-time">0:00</span>
+                        <button class="btn-play" aria-label="Play Goddess">
+                            <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                            <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Трек 6 -->
+                <div class="track-card glass-card" data-src="audio/black-jack.mp3">
+                    <div class="track-index">06</div>
+                    <div class="track-info">
+                        <h3 class="track-name">Black Jack</h3>
+                        <span class="track-label">Soundtrack</span>
+                    </div>
+                    <div class="track-controls">
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                        <span class="track-time">0:00</span>
+                        <button class="btn-play" aria-label="Play Black Jack">
+                            <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                            <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Трек 7 -->
+                <div class="track-card glass-card" data-src="audio/red-wine.mp3">
+                    <div class="track-index">07</div>
+                    <div class="track-info">
+                        <h3 class="track-name">Red Wine</h3>
+                        <span class="track-label">Soundtrack</span>
+                    </div>
+                    <div class="track-controls">
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                        <span class="track-time">0:00</span>
+                        <button class="btn-play" aria-label="Play Red Wine">
+                            <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M8 5v14l11-7z"/>
+                            </svg>
+                            <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ===== Футер ===== -->
+        <footer class="footer glass-card">
+            <p>Made with 💙 by Autistic Games Team</p>
+        </footer>
+
+    </main>
+
+    <!-- Скрипт -->
+    <script src="script.js"></script>
+</body>
+</html>
